@@ -31,7 +31,7 @@ def home():
 
 @app.route('/register',methods=['GET','POST'])
 def register():
-    cur=msql.connection.cursor()
+  #  cur=msql.connection.cursor()
     if request.method=='POST':
         logininfo=request.form
         fname=logininfo['fname']
