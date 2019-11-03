@@ -53,7 +53,7 @@ def register():
             flash("Password didnt match",'danger')
             return redirect(url_for('register'))
          
- return render_template('register.html')
+    return render_template('register.html')
 
 #after user logs in
 @app.route('/loggedin')
@@ -219,5 +219,5 @@ def facultylogin():
 
 #function mainloop
 if __name__=='__main__':
-    app.run(host='127.0.0.1',port=8080,debug=True)
+    app.run(host='172.31.74.44',port=5000,debug=True)
 
