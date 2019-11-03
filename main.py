@@ -89,6 +89,7 @@ def profile():
 
 @app.route('/student',methods=['GET','POST'])
 def studentlogin():
+
     #cur = msql.connection.cursor()
     if request.method=='POST':
         slogininfo=request.form
