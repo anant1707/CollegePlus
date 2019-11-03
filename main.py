@@ -31,7 +31,7 @@ def home():
 
 @app.route('/register',methods=['GET','POST'])
 def register():
-  cur=msql.connection.cursor()
+ cur=msql.connection.cursor()
     if request.method=='POST':
         logininfo=request.form
         fname=logininfo['fname']
@@ -52,9 +52,8 @@ def register():
         else:
             flash("Password didnt match",'danger')
             return redirect(url_for('register'))
-
-
-    return render_template('register.html')
+         
+ return render_template('register.html')
 
 #after user logs in
 @app.route('/loggedin')
