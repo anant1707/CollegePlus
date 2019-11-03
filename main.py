@@ -31,7 +31,7 @@ def home():
 
 @app.route('/register',methods=['GET','POST'])
 def register():
- cur=msql.connection.cursor()
+    cur=msql.connection.cursor()
     if request.method=='POST':
         logininfo=request.form
         fname=logininfo['fname']
@@ -89,7 +89,6 @@ def profile():
 
 @app.route('/student',methods=['GET','POST'])
 def studentlogin():
-
     #cur = msql.connection.cursor()
     if request.method=='POST':
         slogininfo=request.form
@@ -220,5 +219,5 @@ def facultylogin():
 
 #function mainloop
 if __name__=='__main__':
-    app.run(host='172.31.74.44',port=5000,debug=True)
+    app.run(host='127.0.0.1',port=8080,debug=True)
 
