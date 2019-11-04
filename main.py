@@ -144,7 +144,7 @@ def forgotpw():
             URL = 'https://www.way2sms.com/api/v1/sendCampaign'
             cur.execute(f"SELECT phone FROM {studentTableName} where sid= {ssid}")
             a = cur.fetchall()[0][0]
-            # sms.sendPostRequest(URL, 'Q9RT7DGYM9XI20C4K0ZGTPC771YVIFZL', 'ZP28KI0MG95EYE7H', 'stage', a, '8437008949', "Your OTP (One Time Password) to change your password is: "+str(otp1)+"Do not share this with anyone!   Team college+")
+            sms.sendPostRequest(URL, 'Q9RT7DGYM9XI20C4K0ZGTPC771YVIFZL', 'ZP28KI0MG95EYE7H', 'stage', a, '8437008949', "Your OTP (One Time Password) to change your password is: "+str(otp1)+"Do not share this with anyone!   Team college+")
             return redirect(url_for('resetpass', phonenumber=a))
 
     return render_template('forgot.html')
