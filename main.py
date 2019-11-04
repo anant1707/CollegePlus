@@ -43,7 +43,7 @@ def register():
         values = (fname, lname, sid, email, password, phone)
         if (password == confirmpassword):
             flash("thanks for registering", 'success')
-            cur.execute("cur.execute("INSERT  " + studentTableName + " VALUES" + f"{values}")
+            cur.execute("INSERT  " + studentTableName + " VALUES" + f"{values}")
             cur.commit()
             return redirect(url_for('home'))
         else:
@@ -209,5 +209,5 @@ def facultylogin():
 
 # function mainloop
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)
 
