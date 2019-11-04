@@ -14,6 +14,7 @@ facultyTableName = 'facultylogininfo'
 app = Flask(__name__)
 
 # sql initialistaions
+app.config['SECRET_KEY']='AjJ0lXaX5K9tai8QsUhwwQ'
 server = 'anant.database.windows.net'
 database = 'collegeplus'
 username = 'root1'
