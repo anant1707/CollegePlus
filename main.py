@@ -43,7 +43,7 @@ def register():
         values = (fname, lname, sid, email, password, phone)
         if (password == confirmpassword):
             flash("thanks for registering", 'success')
-            cur.execute("INSERT INTO " + studentTableName + " VALUES" + "(%s,%s,%s,%s,%s,%s)", values)
+            cur.execute("cur.execute("INSERT  " + studentTableName + " VALUES" + f"{values}")
             cur.commit()
             return redirect(url_for('home'))
         else:
