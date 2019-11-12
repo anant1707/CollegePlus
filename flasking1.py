@@ -6,7 +6,6 @@ from datetime import date
 import sms
 
 # global variables
-
 otp1 = 'none'
 studentTableName = 'studentlogininfo'
 facultyTableName = 'facultylogininfo'
@@ -22,7 +21,6 @@ app.config['MYSQL_PASSWORD'] = 'Anant@1707'
 app.config['MYSQL_DB'] = 'collegeplus'
 msql = MySQL(app)
 print(msql)
-
 
 # routes
 @app.route('/')
@@ -112,7 +110,7 @@ def facultylogin():
             cur.execute(f"select loginid from facultylogininfo")
             session['username']=username
             session['log-in']=True
-            return redirect(url_for('facultyannouncements'))
+            return redirect(url_for('facultyloggedin'))
         else:
             flash('Invalid Username or Password', 'danger')
             return redirect(url_for('facultylogin'))
@@ -190,7 +188,7 @@ def studentloggedin():
     cur.execute(f"select stream from studentlogininfo where sid='{session['username']}'")
     a = cur.fetchone()
     strin = a[0]
-    cur.execute(f"select f.fname,f.lname , a.postdate,a.title,a.content from announcements a join facultylogininfo f on a.author=f.loginid where receivers='{strin}'")
+    cur.execute(f"select f.fname,f.lname , a.postdate,a.title,a.content from announcements a join facultylogininfo f on a.author=f.loginid where receivers='{strin}' order by a.postdate desc ,a.priority  ")
     a = cur.fetchall()
 
 
@@ -209,40 +207,73 @@ def facultyloggedin():
     cur = msql.connection.cursor()
     cur.execute(f"select department from facultylogininfo where loginid='{session['username']}'")
     a = cur.fetchone()
-    stream = a[0]
-    cur.execute(f"select f.fname,f.lname , a.postdate,a.title,a.content from announcements a join facultylogininfo f on a.author=f.loginid where receivers='{stream}'")
-    a = cur.fetchall()
+    department = a[0]
+    cur.execute(f"select DISTINCT f.fname, f.lname , a.postdate , a.title , a.content, a.ano from announcements a join facultylogininfo f on a.author = f.loginid where f.loginid = '{session['username']}'")
+    a  = cur.fetchall()
 
-    ssid  = session.get('username')
-    cur.execute(f"select * from studentlogininfo where sid={ssid}")
+    loginid=session['username']
+    cur.execute(f"select * from facultylogininfo where loginid= '{loginid}'")
     b = cur.fetchone()
     name = b[0] + " " + b[1]
 
     email = b[3]
-    phonenumber = b[5]
+    phonenumber = b[6]
 
-    return render_template('facultyhome.html', tasks=a, name=name, email=email, ssid=ssid, phonenumber=phonenumber)
+    return render_template('facultyhome.html', tasks=a, name=name, email=email, department=department, phonenumber=phonenumber)
 
 
-@app.route('/facultyannouncements', methods=['GET', 'POST'])
-def facultyannouncements():
+@app.route('/facultyannouncement', methods=['GET', 'POST'])
+def facultyannouncement():
     cur=msql.connection.cursor()
+
+
     if request.method == 'POST':
+        cur.execute(f"select max(ano) from announcements")
+        abc=cur.fetchone()[0]
+        print(abc)
+        if (abc == None):
+            ano = 0
+        else:
+            ano = int(abc)
+
+        ano += 1
         info = request.form
         loginid=session['username']
-
         today=date.today()
         title=info['title']
         content=info['content']
-        receivers=info['stream']
-        values=f"('{loginid}','{content}','{today}','{receivers}','{title}')"
-        print(values)
-        cur.execute(f"INSERT into announcements values{values}")
+        priority=info['priority']
+        for i in info.getlist('stream'):
+            receivers=i
+            values=f"('{loginid}','{content}','{today}','{receivers}','{title}','{priority}','{ano}')"
+            cur.execute(f"INSERT into announcements values{values}")
         msql.connection.commit()
         flash('announcement successfully added','success')
-        return redirect(url_for('home'))
+        return redirect(url_for('facultyloggedin'))
 
-    return render_template("facultyannouncements.html")
+    return render_template("facultyannouncement.html")
+
+@app.route('/delete<ano>')
+def delete(ano):
+    cur=msql.connection.cursor()
+    cur.execute(f"DELETE FROM ANNOUNCEMENTS WHERE ano = '{ano}'")
+    msql.connection.commit()
+    return redirect(url_for('facultyloggedin'))
+@app.route('/edit<ano>',methods=["GET","POST"])
+def edit (ano):
+    cur=msql.connection.cursor()
+    if request.method == 'POST':
+        info=request.form
+        content=info['content']
+        title=info['title']
+        cur.execute(f" update  announcements set title='{title}',content='{content}' where ano={ano} ")
+        msql.connection.commit()
+        return redirect(url_for('facultyloggedin'))
+
+    cur.execute(f"SELECT * FROM ANNOUNCEMENTS WHERE ano= {ano}")
+    a=cur.fetchone()
+    return render_template('update.html',task=a)
+
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
