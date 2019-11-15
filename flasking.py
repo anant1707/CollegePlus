@@ -9,6 +9,7 @@ from datetime import date
 import xlrd
 import sms
 from werkzeug.utils import secure_filename
+from passlib.hash import pbkdf2_sha256
 #==========================================================================
 #GLOBAL VARIABLES
 otp1 = 'none'
@@ -52,7 +53,7 @@ def register():
         confirmpassword = logininfo['confirmpass']
         stream = logininfo['stream']
 
-        values = (fname, lname, sid, email, password, phone,stream)
+        values = (fname, lname, sid, email, pbkdf2_sha256.hash(password), phone,stream)
         if (password == confirmpassword):
             flash("Thanks for Registering", 'success')
             cur.execute(f"INSERT INTO " + studentTableName + " VALUES" + f"{values}")
@@ -89,7 +90,7 @@ def studentlogin():
             cur.execute(f"SELECT passwordd FROM {studentTableName} where sid = '{ssid}'")
             a = cur.fetchall()
 
-            if (password == a[0][0]):
+            if (pbkdf2_sha256.verify(password,a[0][0])):
 
                 session['logged_in'] = True
                 session['username'] = ssid
@@ -192,8 +193,9 @@ def newpass(phonenumber2):
         confirmnewpassword = slogininfo['cpassword']
 
         if (newpassword == confirmnewpassword):
+            newpassworda=pbkdf2_sha256.hash(newpassword)
 
-            query = f" UPDATE  {studentTableName}  set passwordd = '{newpassword}' where phone =  {phonenumber2}  ; "
+            query = f" UPDATE  {studentTableName}  set passwordd = '{newpassworda}' where phone =  {phonenumber2}  ; "
 
             cur.execute(query)
             msql.connection.commit()
@@ -214,11 +216,12 @@ def changepass():
         currentpassword = cur.fetchone()[0]
         newpassword = slogininfo['password']
         confirmnewpassword = slogininfo['cpassword']
-        if(currentpass == currentpassword):
+        if(pbkdf2_sha256.verify(currentpass,currentpassword)):
 
             if (newpassword == confirmnewpassword):
+                newpassworda=pbkdf2_sha256.hash(newpassword)
 
-                query = f" UPDATE  {studentTableName}  set passwordd = '{newpassword}' where sid = '{session['username']}' "
+                query = f" UPDATE  {studentTableName}  set passwordd = '{newpassworda}' where sid = '{session['username']}' "
 
                 cur.execute(query)
                 msql.connection.commit()
