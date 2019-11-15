@@ -46,6 +46,7 @@
             {% for c,m in messages %}
 
             <div class="alert alert-{{ c }}">
+            <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
 
                 {{m}}
             </div>
@@ -73,10 +74,37 @@
         <input type="text" class="getinput" placeholder="Last Name" name="lname" required>
         <input type="text" class="getinput" placeholder="SID" name="sid" required maxlength="8" minlength="8">
         <input type="email" class="getinput" placeholder="Email Id" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" >
+
         
         <input type="text" class="getinput" placeholder="Phone" name="phone" required maxlength="10" minlength="10">
-        <input type="password" class="getinput" placeholder="Enter Password" name="password" required   >
-        <input type="password" class="getinput" placeholder="Confirm Password" name="confirmpass" required>
+        
+        <select  name="stream" style="
+  font-family:Poppins, sans-serif;
+  text-transform:none;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: list-item;
+  padding: 10px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 20px;
+  background-color:transparent;
+  border: 1.5px solid #fff;
+  color:gray;
+  outline: none;
+  width:-webkit-fill-available;" required>
+
+    <option value="CSE">CSE</option>
+    <option value="ECE">ECE</option>
+    <option value="ELEC">ELEC</option>
+    <option value="MECH">MECH</option>
+    <option value="AERO">AERO</option>
+    <option value="METTA">METTA</option>
+    <option value="PROD">PROD</option>
+  </select>
+  <input type="password" class="getinput" placeholder="Enter Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"required   >
+        <input type="password" class="getinput" placeholder="Confirm Password" name="confirmpass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"required>
         <input type="submit" class="btn-get-started">
       </form>
 

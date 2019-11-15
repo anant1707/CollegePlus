@@ -24,7 +24,7 @@
 
 <header id="header">
     <div class="container">
-      {% with messages =get_flashed_messages(with_categories=true) %}
+       {% with messages =get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for c,m in messages %}
 
@@ -53,7 +53,6 @@
           <li><a href="#">contact us</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
-
 </header><!-- #header -->
 
 <section id="hero">
@@ -61,9 +60,10 @@
     <div class="hero-container">
       <h1>Reset password</h1>
     <div >
-<form method="post" >
-    <input type="text" name="sid" class="getinput" placeholder="sid">
-    <button class='btn-get-started'>send otp</button>
+<form method="post">
+      <input type="text" name="otp" class="getinput" placeholder="enter otp">
+    <input type="submit" class='btn-get-started' value="verify">
+</a>
   </form>
 </div>
     </div>

@@ -39,13 +39,12 @@
   ============================-->
   <header id="header">
     <div class="container">
-
-     
- {% with messages =get_flashed_messages(with_categories=true) %}
+{% with messages =get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for c,m in messages %}
 
             <div class="alert alert-{{ c }}">
+              <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
 
                 {{m}}
             </div>
@@ -65,9 +64,9 @@
       <h1>faculty login</h1>
       <br>
       <form method="post">
-        <input type='text' placeholder="login-id" class="getinput" name="logid">
+        <input type='text' placeholder="login-id" class="getinput" name="logid" required>
         
-        <input type='password' placeholder="password" class="getinput" name="password"> 
+        <input type='password' placeholder="password" class="getinput" name="password" required>
         
         <input type='submit' class='btn-get-started'>
       </form>

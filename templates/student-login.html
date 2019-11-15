@@ -7,29 +7,44 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
+  <!-- Favicons -->
   <link href="static/img/favicon.png" rel="icon">
   <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
 
+  <!-- Bootstrap CSS File -->
   <link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Libraries CSS Files -->
   <link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="static/lib/animate/animate.min.css" rel="stylesheet">
 
+  <!-- Main Stylesheet File -->
   <link href="static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: Regna
+    Theme URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
 </head>
 
 <body>
 
-<header id="header">
+  <!--==========================
+  Header
+  ============================-->
+  <header id="header">
     <div class="container">
-      {% with messages =get_flashed_messages(with_categories=true) %}
+{% with messages =get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for c,m in messages %}
 
             <div class="alert alert-{{ c }}">
-            <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
+              <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
 
                 {{m}}
             </div>
@@ -37,40 +52,50 @@
             {% endfor %}
             {% endif %}
             {% endwith %}
+     
+
+     
+
+     
     </div>
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li><a href="#">Home</a></li>
-          
-          <li class="menu-has-children"><a href="">services</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
-            </ul>
-          </li>
-          <li><a href="#">contact us</a></li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
+  </header><!-- #header -->
 
-</header><!-- #header -->
-
-<section id="hero">
-
+  <!--==========================
+    Hero Section
+  ============================-->
+  <section id="hero">
     <div class="hero-container">
-      <h1>Reset password</h1>
-    <div >
-<form method="post" >
-    <input type="text" name="sid" class="getinput" placeholder="sid">
-    <button class='btn-get-started'>send otp</button>
-  </form>
-</div>
+      <h1>Student Login</h1>
+      <br>
+      <form method="post">
+        
+        <input type='text' placeholder="SID" class="getinput" name="sid">
+        
+        <input type='password' placeholder="PASSWORD" class="getinput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password">
+    
+        <button class='btn-get-started'>LOGIN</button>
+      </form>
+      <br>
+  <div >
+    <a  href='forgot' >
+          Forgot Password
+        </a>
+        <br>
+        <a  href='register' >
+          Create New Account
+        </a>
+
+      </div>
     </div>
-</section><!-- #hero -->
+  </section><!-- #hero -->
 
+  <main id="main">
 
-<footer id="footer">
+   
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
     <div class="footer-top">
       <div class="container">
 
@@ -82,13 +107,20 @@
         &copy; Copyright <strong>College+</strong>. All Rights Reserved
       </div>
       <div class="credits">
-       
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
+        -->
         
       </div>
     </div>
-</footer>
+  </footer><!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
   <script src="static/lib/jquery/jquery.min.js"></script>
   <script src="static/lib/jquery/jquery-migrate.min.js"></script>
   <script src="static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -103,7 +135,7 @@
   <script src="static/contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="static/js/main.js"></script><!--#footer-->
+  <script src="static/js/main.js"></script>
 
 </body>
 </html>

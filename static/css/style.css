@@ -26,11 +26,20 @@ p {
   margin: 0 0 30px 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h3 {
+font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  padding: 0;
+  color:green;
+}
+
+h1, h2, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
+  color:black;
 }
 
 /* Prelaoder */
@@ -44,6 +53,17 @@ h1, h2, h3, h4, h5, h6 {
   overflow: visible;
   background: #fff url("../img/preloader.svg") no-repeat center center;
 }
+
+
+
+/* Add a card effect for articles */
+#hero .card {
+  background-color: white;
+  padding: 30px;
+  margin:auto;
+
+}
+
 
 /* Back to top button */
 .back-to-top {
@@ -138,6 +158,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 100vh;
   background: url(../img/hero-bg.jpg) top center;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   position: relative;
 }
 
@@ -191,6 +213,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 50px;
   font-size: 24px;
 }
+#hero h3 {
+font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  padding: 0;
+
+}
 
 @media (max-width: 768px) {
   #hero h2 {
@@ -198,6 +227,60 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 24px;
     margin-bottom: 30px;
   }
+}
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  word-break:;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color:black;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+
+
+#hero .announcements 
+{
+padding: 30px;
+border:2px;
+border-color: red;
+
 }
 #hero .register
 {
@@ -219,13 +302,7 @@ font-family: "Poppins", sans-serif;
 }
 
 
-br
-{
- line-height: 0;
 
-
-
-}
 #hero .getinput
 {
 font-family: "Poppins", sans-serif;
@@ -243,6 +320,21 @@ font-family: "Poppins", sans-serif;
   color:white;
   outline: none;
 
+}
+
+#hero .texxt
+{
+    border-width: 2px;
+    background-color: white;
+    border-radius: 8px;
+    outline: none;
+    
+}
+#hero .texxt:focus
+{
+  border-color: #2dc997;
+    
+    transition: 0.5s;
 }
 #hero a
 {
@@ -270,7 +362,7 @@ font-family: "Poppins", sans-serif;
   transition: 0.5s;
   margin: 20px;
   border: 2px solid #fff;
-  color: #fff;
+  color:white;
   background-color: transparent;
   outline: none;
 }

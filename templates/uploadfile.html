@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+    {% if title %}
+        <title>Dashboard - {{ title }}</title>
+    {% else %}
+        <title>Flask Blog</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+        {% with messages =get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for c,m in messages %}
+
+            <div class="alert alert-{{ c }}">
+            <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
+
+                {{m}}
+            </div>
+
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/facultyloggedin">COLLEGE+</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="/facultyloggedin">Home</a>
+              <a class="nav-item nav-link" href="/addresult">Add Result</a>
+              <a class="nav-item nav-link" href="/attendanceupload">Add Attendance</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+
+            </div>
+            
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+         
+           <h3>Create New</h3>
+   <br>
+   <form method="post">
+
+  <p>STREAM:
+  <select multiple="multiple" name="stream" class="custom-select" required="">
+
+    <option value="CSE">CSE</option>
+    <option value="ECE">ECE</option>
+    <option value="ELEC">ELEC</option>
+    <option value="MECH">MECH</option>
+    <option value="AERO">AERO</option>
+    <option value="METTA">METTA</option>
+    <option value="PROD">PROD</option>
+  </select>
+
+    
+</p>     
+  <p style="margin-bottom: 0px;">TITLE:</p>
+  <textarea class="texxt" rows="1" cols="50" name='title' required=""></textarea>
+  
+  <p style="margin-bottom: 0px;">DESCRIPTION:</p>
+  <textarea class="texxt" rows="4" cols="50" name="description" required=""></textarea>
+  <br>
+  <br><br>
+  
+<input type="file" name="file" accept=".xls,.xlsx,.csv,.ppt,.pptx,.txt,.docx"  required >
+         <br><br>
+
+         <input type="submit" name="Uploadfile" value="Upload  file">
+</form>
+
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

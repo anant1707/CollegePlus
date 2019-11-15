@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="static/js/chart.js"></script>
+    
+</head>
+<body>
+    <header class="site-header">
+        {% with messages =get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for c,m in messages %}
+
+            <div class="alert alert-{{ c }}">
+            <a href="#" class="close" data-dismiss='alert' aria-label="close">&times;</a>
+
+                {{m}}
+            </div>
+
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">COLLEGE+</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="/studentloggedin">Home</a>
+              
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href={{url_for('logout')}}>LogOut</a>
+            </div>
+            
+          </div>
+        </div>
+      </nav>
+    </header>
+
+      <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% for subject in subjects %}
+     <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">Instructor:</a>
+              <p>{{subject.1}}</p>
+            </div>
+            <h2><a class="article-title" href="#">{{subject.0}}</a></h2>
+            
+       </div>
+        </article>
+      {%endfor%}
+
+   <div class="container">
+  <h2>MARKS</h2>            
+  <table class="table">
+<thead>
+     <tr>
+    {% for i in a%}
+    
+     
+      <th>{{i.0}}</th>
+   
+    {% endfor %}
+     </tr>
+    </thead>
+    <tbody>
+      {%for i in b%}
+      <tr>
+        {%for j in i%}
+        <td>{{j}}</td>
+        {%endfor%}
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+<br>
+<h2>ATTENDANCE</h2>
+<p>
+ {%for i in attendance%}
+
+ <script type="text/javascript">
+ google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Attendance', 'Days'],
+          ['Present',     {{i.2}}],
+          ['Absent',     {{i.3-i.2}}],
+          ]);
+
+        var options = {
+          title: '{{i.4}} Attendance',
+          pieHole: 0.55,
+          width:600,
+          hegiht:600,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart{{i.4}}'));
+        chart.draw(data, options);
+      }
+      </script>
+<div id="donutchart{{i.4}}" style="width: 600px; height: 400px; margin-left: auto;"></div>
+{%endfor%}
+</p>
+
+   
+</div>
+</div>
+</main>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
