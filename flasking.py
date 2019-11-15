@@ -1,3 +1,4 @@
+
 #=========================================================================
 #LIBRARIES IMPORT
 import os
@@ -8,19 +9,14 @@ from datetime import date
 import xlrd
 import sms
 from werkzeug.utils import secure_filename
-
 #==========================================================================
 #GLOBAL VARIABLES
-
-
 otp1 = 'none'
 studentTableName = 'studentlogininfo'
 facultyTableName = 'facultylogininfo'
 #==========================================================================
 #APPLICATION INIT.
 app = Flask(__name__)
-
-
 #=============================================================================
 #MYSQL CONFIGURATION
 app.config['SECRET_KEY'] = 'AjJ0lXaX5K9tai8QsUhwwQ'
@@ -29,8 +25,10 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Anant@1707'
 app.config['MYSQL_DB'] = 'collegeplus'
 msql = MySQL(app)
-
 #===============================================================================
+
+
+
 #HOMEPAGE
 @app.route('/')
 def home():
@@ -292,6 +290,7 @@ def studentloggedin():
         flash('You are not Logged-In!','info')
         return redirect(url_for('studentlogin'))
 
+
 @app.route('/coursemanager')
 def coursemanager():
     if (session.get('username')):
@@ -432,7 +431,7 @@ def edit (ano):
         return redirect(url_for('facultylogin'))
 
 
-@app.route('/addresult',methods=['GET', 'POST'])
+@app.route('/addresult',methods=['GET','POST'])
 def addresult():
     if(session.get('username')):
         cur = msql.connection.cursor()
@@ -552,7 +551,6 @@ def uploadfile():
     else:
         flash('You are not Logged-In', 'info')
         return redirect(url_for('facultylogin'))
-
 
 #=========================================================================
 #LOGOUT
