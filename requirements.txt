@@ -1,3 +1,5 @@
 flask
-pyodbc
+flask_mysqldb
 requests
+xlrd
+passlib
