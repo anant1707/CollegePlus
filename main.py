@@ -561,8 +561,8 @@ def uploadfile():
             info = request.form
 
             file = request.files['file']
-            if not os.path.exists(os.getcwd() + '\\static\\studymaterial'):
-                os.makedirs(os.getcwd() + '\\static\\studymaterial')
+            if not os.path.exists(os.getcwd() + '\\studymaterial'):
+                os.makedirs(os.getcwd() + '\\studymaterial')
             fname, fext = os.path.splitext(file.filename)
 
 
@@ -576,7 +576,7 @@ def uploadfile():
             for i in info.getlist('stream'):
                 receivers = i
                 values = f"('{subid}','{title}','{descriptions}','{today}','{receivers}','{fname}','{fno}','{fext}','{session['username']}')"
-                file.save(os.getcwd() + '\\static\\studymaterial\\' + secure_filename(file.filename))
+                file.save(os.getcwd() + '\\studymaterial\\' + secure_filename(file.filename))
                 cur.execute(f"INSERT into files values{values}")
             cur.commit()
             flash('File successfully uploaded', 'success')
