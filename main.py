@@ -3,7 +3,6 @@
 #LIBRARIES IMPORT
 import os
 from flask import Flask, render_template, request, flash, url_for, redirect, sessions, session
-from flask_mysqldb import MySQL
 import random
 from datetime import date
 import xlrd
