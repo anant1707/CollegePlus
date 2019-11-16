@@ -72,7 +72,7 @@ def register():
             else:
 
                 cur.commit()
-            cnxn.close()
+            
             flash("Thanks for Registering", 'success')
             return redirect(url_for('home'))
         else:
@@ -107,11 +107,11 @@ def studentlogin():
 
                 flash(f'welcome {fname[0]}', 'success')
 
-                cnxn.close()
+                
                 return redirect(url_for('studentloggedin'))
             else:
                 flash("WRONG PASSWORD", 'danger')
-                cnxn.close()
+                
                 return redirect(url_for('studentlogin'))
 
     return render_template("student-login.html",title="Login")
