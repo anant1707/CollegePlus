@@ -31,7 +31,7 @@ database = 'collegeplus'
 username = 'root7'
 password = 'Anant@1707'
 driver= 'ODBC Driver 17 for SQL Server'
-cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+#cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 
 #===============================================================================
 
